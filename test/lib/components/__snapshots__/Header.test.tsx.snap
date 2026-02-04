@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`renders unchanged 1`] = `
+<div>
+  <div>
+    <h1
+      class="h1"
+    >
+      foo
+    </h1>
+    <p
+      class="lead"
+    >
+      bar
+    </p>
+  </div>
+</div>
+`;

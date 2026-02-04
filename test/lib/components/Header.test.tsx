@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
-import Page from "@/app/page";
+import Header from "@/lib/components/Header";
 
 it("renders unchanged", () => {
-  const { container } = render(<Page />);
+  const { container } = render(<Header title="foo" description="bar" />);
   expect(container).toMatchSnapshot();
 });
