@@ -22,9 +22,7 @@ exports[`renders unchanged 1`] = `
           style="color: transparent;"
           width="127"
         />
-         in Hengelo.
-        <br />
-        I also provide IT services for individuals and small businesses.
+         and I provide IT services for individuals and small businesses.
       </p>
       <h2>
         Services
@@ -34,7 +32,7 @@ exports[`renders unchanged 1`] = `
           Migration and maintenance to the public cloud.
         </li>
         <li>
-          Set up and maintenance of private clouds.
+          Set up and maintenance of private clouds, both for business and personal use.
         </li>
         <li>
           Linux server administration.
@@ -43,10 +41,63 @@ exports[`renders unchanged 1`] = `
           Set up and maintenance of Linux workstations.
         </li>
         <li>
-          Web, desktop and mobile application development and maintenance.
+          Web, desktop and mobile applications development and maintenance.
         </li>
       </ul>
     </div>
+    <form>
+      <h2>
+        Contact me
+      </h2>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="form-label"
+          for="email"
+        >
+          Email
+        </label>
+        <input
+          class="form-control"
+          id="email"
+          name="email"
+          required=""
+          type="email"
+        />
+      </div>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="form-label"
+          for="message"
+        >
+          Password
+        </label>
+        <textarea
+          class="form-control"
+          id="message"
+          name="message"
+          required=""
+          rows="3"
+        />
+      </div>
+      <button
+        class="btn btn-primary g-recaptcha"
+        data-action="send_message"
+        data-callback="onReCaptchaSubmit"
+        data-sitekey="6LctU1ksAAAAAHSrvyDZpmWEx40rWfIsXmt9NTSF"
+        type="button"
+      >
+        Submit
+         
+        <span
+          aria-hidden="true"
+          class=""
+        />
+      </button>
+    </form>
   </div>
 </div>
 `;

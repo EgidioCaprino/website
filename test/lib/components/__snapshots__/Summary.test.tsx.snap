@@ -19,9 +19,7 @@ exports[`renders unchanged 1`] = `
         style="color: transparent;"
         width="127"
       />
-       in Hengelo.
-      <br />
-      I also provide IT services for individuals and small businesses.
+       and I provide IT services for individuals and small businesses.
     </p>
     <h2>
       Services
@@ -31,7 +29,7 @@ exports[`renders unchanged 1`] = `
         Migration and maintenance to the public cloud.
       </li>
       <li>
-        Set up and maintenance of private clouds.
+        Set up and maintenance of private clouds, both for business and personal use.
       </li>
       <li>
         Linux server administration.
@@ -40,7 +38,7 @@ exports[`renders unchanged 1`] = `
         Set up and maintenance of Linux workstations.
       </li>
       <li>
-        Web, desktop and mobile application development and maintenance.
+        Web, desktop and mobile applications development and maintenance.
       </li>
     </ul>
   </div>
