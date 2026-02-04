@@ -1,0 +1,20 @@
+name: CI/CD pipeline
+on:
+  push:
+    tags:
+      - "*"
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: "ghcr.io/egidiocaprino/website"
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          podman image build \
+            --tag "${IMAGE_NAME}:${{ github.ref_name }}" \
+            --tag "${IMAGE_NAME}:latest" \
+            .
+      - run: podman login --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" ghcr.io
+      - run: podman image push "${IMAGE_NAME}:${{ github.ref_name }}"
+      - run: podman image push "${IMAGE_NAME}:latest"
