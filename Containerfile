@@ -5,6 +5,7 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY . .
 RUN rm -rf node_modules
+ENV NODE_ENV=test
 RUN npm ci
 RUN npm run validate
 ENV NODE_ENV=production

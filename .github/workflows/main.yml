@@ -17,4 +17,5 @@ jobs:
             .
       - run: podman login --username "${{ github.repository_owner }}" --password "${{ secrets.GITHUB_TOKEN }}" ghcr.io
       - run: podman image push "${IMAGE_NAME}:${{ github.ref_name }}"
-      - run: podman image push "${IMAGE_NAME}:latest"
+      - if: "!contains(github.ref_name, '-')"
+        run: podman image push "${IMAGE_NAME}:latest"

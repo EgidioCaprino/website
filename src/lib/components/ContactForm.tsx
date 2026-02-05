@@ -4,6 +4,7 @@ import assert from "assert";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import sendMessage from "@/lib/sendMessage";
+import getEnvironmentVariables from "@/lib/getEnvironmentVariables";
 
 declare global {
   interface Window {
@@ -11,20 +12,21 @@ declare global {
   }
 }
 
-interface Props {
-  siteKey: string;
-}
-
 const schema = z.object({
   email: z.email().trim(),
   message: z.string().trim().min(20),
 });
 
-export default function ContactForm({ siteKey }: Props) {
+export const testId = {
+  submitButton: `${ContactForm.name}-submit-button`,
+};
+
+export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [userEmailAddress, setUserEmailAddress] = useState("");
   const [sent, setSent] = useState<boolean | null>(null);
   const [sending, setSending] = useState(false);
+  const [siteKey, setSiteKey] = useState("");
 
   useEffect(() => {
     window.onReCaptchaSubmit = async (reCaptchaToken: string) => {
@@ -61,7 +63,13 @@ export default function ContactForm({ siteKey }: Props) {
     return () => {
       delete window.onReCaptchaSubmit;
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    getEnvironmentVariables().then(({ RECAPTCHA_SITE_KEY }) =>
+      setSiteKey(RECAPTCHA_SITE_KEY),
+    );
+  }, []);
 
   let successAlert = null;
   let errorAlert = null;
@@ -104,7 +112,7 @@ export default function ContactForm({ siteKey }: Props) {
           </div>
           <div className="mb-3">
             <label htmlFor="message" className="form-label">
-              Password
+              Message
             </label>
             <textarea
               className="form-control"
@@ -114,20 +122,23 @@ export default function ContactForm({ siteKey }: Props) {
               rows={3}
             />
           </div>
-          <button
-            type="button"
-            className="btn btn-primary g-recaptcha"
-            data-sitekey={siteKey}
-            data-callback="onReCaptchaSubmit"
-            data-action="send_message"
-            disabled={sending}
-          >
-            Submit{" "}
-            <span
-              className={sending ? "visually-hidden" : ""}
-              aria-hidden="true"
-            ></span>
-          </button>
+          {siteKey && (
+            <button
+              type="button"
+              className="btn btn-primary g-recaptcha"
+              data-sitekey={siteKey}
+              data-callback="onReCaptchaSubmit"
+              data-action="send_message"
+              disabled={sending}
+              data-testid={testId.submitButton}
+            >
+              Submit{" "}
+              <span
+                className={sending ? "visually-hidden" : ""}
+                aria-hidden="true"
+              ></span>
+            </button>
+          )}
           {sent === false && errorAlert}
         </>
       )}

@@ -30,7 +30,7 @@ exports[`renders unchanged 1`] = `
         class="form-label"
         for="message"
       >
-        Password
+        Message
       </label>
       <textarea
         class="form-control"
@@ -44,6 +44,8 @@ exports[`renders unchanged 1`] = `
       class="btn btn-primary g-recaptcha"
       data-action="send_message"
       data-callback="onReCaptchaSubmit"
+      data-sitekey="foo"
+      data-testid="ContactForm-submit-button"
       type="button"
     >
       Submit
