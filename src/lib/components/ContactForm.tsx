@@ -4,7 +4,7 @@ import assert from "assert";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import sendMessage from "@/lib/sendMessage";
-import getEnvironmentVariables from "@/lib/getEnvironmentVariables";
+import { getSecureEnvironmentVariables } from "@/lib/getEnvironmentVariables";
 
 declare global {
   interface Window {
@@ -66,7 +66,7 @@ export default function ContactForm() {
   }, []);
 
   useEffect(() => {
-    getEnvironmentVariables().then(({ RECAPTCHA_SITE_KEY }) =>
+    getSecureEnvironmentVariables().then(({ RECAPTCHA_SITE_KEY }) =>
       setSiteKey(RECAPTCHA_SITE_KEY),
     );
   }, []);

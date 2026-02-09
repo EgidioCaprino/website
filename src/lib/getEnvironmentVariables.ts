@@ -16,3 +16,10 @@ export default async function getEnvironmentVariables() {
   }
   return environmentVariables;
 }
+
+export const getSecureEnvironmentVariables = async (): Promise<
+  Pick<Schema, "RECAPTCHA_SITE_KEY">
+> => {
+  const { RECAPTCHA_SITE_KEY } = await getEnvironmentVariables();
+  return { RECAPTCHA_SITE_KEY };
+};
